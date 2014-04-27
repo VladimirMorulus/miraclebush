@@ -3,11 +3,11 @@ MiracleBush
 
 ### Javascript framework for creating visual components library.
 
-Visit project page: [http://miraclebush.vladimirkalmykov.com](miraclebush.vladimirkalmykov.com "Javascript UIL framework")
+Visit project page: http://miraclebush.vladimirkalmykov.com
 
 ## Getting Started
 
-I. Get lasted compiled version on  [http://miraclebush.vladimirkalmykov.com/downloads](miraclebush.vladimirkalmykov.com/downloads "MiracleBush downloads").
+I. Get lasted compiled version on http://miraclebush.vladimirkalmykov.com/downloads.
 
 II. Include mb.pack.js on your web-site:
 ```html
@@ -53,4 +53,4 @@ VII. Use it via html:
 <p ui-myown="message">Me@Hello, world</p>
 <p ui-myown="message">World@Hi</p>
 ```
-[Test it on jsfiddle »](http://jsfiddle.net/Morulus/8THWn/ Test it on jsfiddle)
+Test it on jsfiddle: http://jsfiddle.net/Morulus/8THWn/
