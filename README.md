@@ -53,4 +53,4 @@ VII. Use it via html:
 <p ui-myown="message">Me@Hello, world</p>
 <p ui-myown="message">World@Hi</p>
 ```
-[http://jsfiddle.net/Morulus/8THWn/1/](http://jsfiddle.net/Morulus/8THWn/1/ Test it on jsfiddle)
+[Test it on jsfiddle »](http://jsfiddle.net/Morulus/8THWn/ Test it on jsfiddle)
