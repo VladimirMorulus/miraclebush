@@ -1,5 +1,5 @@
 /*!
- * jAir Curve Plugin
+ * miraclebush Curve Plugin
  *
  * Version 1.0.
  *
@@ -7,20 +7,20 @@
 
 Copyright (C) 2014 Vladimir Kalmykov
 */
-	window.$jair.curve = window.$jair.ext.curve = function() {
+	window.$bush.curve = window.$bush.ext.curve = function() {
 		
 			
-		return $jair.bench.call(this, arguments, function(elem, options) {
+		return $bush.bench.call(this, arguments, function(elem, options) {
 			
-			return new window.$jair.curves.coordinate(elem, options);
+			return new window.$bush.curves.coordinate(elem, options);
 		});
 	};
 	
-	window.$jair.curves = window.$jair.ext.curves = {
+	window.$bush.curves = window.$bush.ext.curves = {
 	
 	};
 	
-	$jair.api.extend($jair.curves, {
+	$bush.api.extend($bush.curves, {
 		
 		coordinate: function(element, options) {
 			
@@ -29,7 +29,7 @@ Copyright (C) 2014 Vladimir Kalmykov
 			this.element = element;
 			
 			
-			this.options = $jair.api.extend({
+			this.options = $bush.api.extend({
 				'strokeStyle': 'rgba(0,0,0,0)',
 				'lineWidth': 3,
 				'fillStyle': '#000000',
@@ -44,22 +44,22 @@ Copyright (C) 2014 Vladimir Kalmykov
 			
 			this.init = function() {
 				// Проверяем является ли объект типом Canvas
-				if ($jair(this.element)[0].tagName.toUpperCase() != 'CANVAS') {
+				if ($bush(this.element)[0].tagName.toUpperCase() != 'CANVAS') {
 					
-					this.canvas = $jair(this.element).put('<canvas />');
+					this.canvas = $bush(this.element).put('<canvas />');
 					
 					this.canvas.css({
-						'width': $jair(this.element).width(),
-						'height': $jair(this.element).height()
+						'width': $bush(this.element).width(),
+						'height': $bush(this.element).height()
 					}).attr({
-						'width': $jair(this.element).width(),
-						'height': $jair(this.element).height()
+						'width': $bush(this.element).width(),
+						'height': $bush(this.element).height()
 					})
 					
 					this.canvas = this.canvas[0];
 					
 				} else {
-					this.canvas = $jair(this.element)[0];
+					this.canvas = $bush(this.element)[0];
 				};				
 				
 				// Проверяем понимает ли браузер canvas

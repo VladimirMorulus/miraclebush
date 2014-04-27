@@ -1,4 +1,4 @@
-$jair.trigonometria = {
+$bush.trigonometria = {
 		natur : function(num) {
 			return num;
 		},

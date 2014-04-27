@@ -1,5 +1,5 @@
 /*!
- * jAir VCL framework
+ * miraclebush UIL framework
  *
  * Version 1.0.
  *
@@ -13,8 +13,8 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
- * Visit for more info: http://jair.vladimirkalmykov.com/
-* jAir using Sizzle lib (http://sizzlejs.com/)
+ * Visit for more info: http://miraclebush.vladimirkalmykov.com/
+* miraclebush using Sizzle lib (http://sizzlejs.com/)
  */
 /*!
  * Sizzle CSS Selector Engine v1.10.20-pre
@@ -2035,35 +2035,35 @@ return Sizzle;
 })( window );
 /* End of Sizzle */
 
-/* Starting jAir */
+/* Starting miraclebush */
 (function(window) {
 	
 	var binds = [];
 	
-	window.$jair = function() {
+	window.$bush = function() {
 		
 		if (this === window) {
 			
-			var air = new window.$jair;
+			var air = new window.$bush;
 			
 			switch (arguments.length) {
 				case 2:
 					var selector = arguments[0];
 					var options = arguments[1];
 					
-					air.selector = $jair.nodeQuery.call(this, selector);
+					air.selector = $bush.nodeQuery.call(this, selector);
 					
 				break;
 				case 1:
 					var selector = arguments[0];
 					var options = {};
-					air.selector = $jair.nodeQuery.call(this, selector);
+					air.selector = $bush.nodeQuery.call(this, selector);
 					
 				break;
 				case 0:
 					var selector = '';
 					var options = {};
-					air.selector = $jair.nodeQuery.call(this, selector);
+					air.selector = $bush.nodeQuery.call(this, selector);
 				break;
 			}
 			
@@ -2084,21 +2084,21 @@ return Sizzle;
 		}
 	};
 	
-	window.$jair.ext = window.$jair.prototype = {
+	window.$bush.ext = window.$bush.prototype = {
 		selector: "",
-		constructor: window.$jair,
+		constructor: window.$bush,
 		init: function( selector ) {
-			return window.$jair.ext.constructor;
+			return window.$bush.ext.constructor;
 		}
 	};
 	
 	// Try to get preposition of selector
-	window.$jair.bench = window.$jair.ext.bench = function(args, tieback) {
+	window.$bush.bench = window.$bush.ext.bench = function(args, tieback) {
 		var elem;
 		if (args.length > 1) {
-			if (typeof args[0] === "object") elem = $jair(args[0]) || this.selector;
+			if (typeof args[0] === "object") elem = $bush(args[0]) || this.selector;
 			else {
-				elem = $jair.nodeQuery(args[0]);
+				elem = $bush.nodeQuery(args[0]);
 			};
 			options = args[1];
 		} else if (args.length>0) {
@@ -2112,7 +2112,7 @@ return Sizzle;
 		return tieback.call(this, elem, options);
 	};
 	
-	window.$jair.nodeQuery = window.$jair.ext.nodeQuery = function(query) {
+	window.$bush.nodeQuery = window.$bush.ext.nodeQuery = function(query) {
 		switch(typeof query) {
 			case 'string':
 				
@@ -2136,9 +2136,9 @@ return Sizzle;
 		};
 	};
 	
-	window.$jair.each = window.$jair.ext.each = function() {
+	window.$bush.each = window.$bush.ext.each = function() {
 		
-		return $jair.bench.call(this, arguments, function(elem, options) {
+		return $bush.bench.call(this, arguments, function(elem, options) {
 			
 			for (var i=0; i<elem.length; i++) {
 				
@@ -2148,14 +2148,14 @@ return Sizzle;
 		});
 	};
 	
-	window.$jair.put = window.$jair.ext.put = function() {
-		return $jair.bench.call(this, arguments, function(elem, options) {
+	window.$bush.put = window.$bush.ext.put = function() {
+		return $bush.bench.call(this, arguments, function(elem, options) {
 			switch(typeof options) {
 				case 'string':
-					var node = $jair.nodeQuery.call(this, options);
+					var node = $bush.nodeQuery.call(this, options);
 					var elem = elem;
 					
-					$jair(elem).each(function() {
+					$bush(elem).each(function() {
 						this.appendChild(node[0]);
 					});
 					
@@ -2163,55 +2163,55 @@ return Sizzle;
 				case 'object':
 					var node = options[0];
 					
-					$jair(elem).each(function() {
+					$bush(elem).each(function() {
 						this.appendChild(node);
 					});
 					
 				break;
 			};
 			
-			return $jair(node);
+			return $bush(node);
 		});
 	};
 	
-	window.$jair.css = window.$jair.ext.css = function() {
+	window.$bush.css = window.$bush.ext.css = function() {
 		
-		return $jair.bench.call(this, arguments, function(elem, options) {
+		return $bush.bench.call(this, arguments, function(elem, options) {
 			for (var i in options) {
 				
 				elem[0].style[i] = options[i]+'px';
 			};		
-			return $jair(elem);
+			return $bush(elem);
 		});
 	};
 	
-	window.$jair.attr = window.$jair.ext.attr = function() {
+	window.$bush.attr = window.$bush.ext.attr = function() {
 		var elem;
-		return $jair.bench.call(this, arguments, function(elem, options) {
+		return $bush.bench.call(this, arguments, function(elem, options) {
 			var options = options;
-				$jair(elem).each(function() {
+				$bush(elem).each(function() {
 					for (var i in options) {
 						this.setAttribute(i, options[i]+'px');
 					};	
 				});
-			return $jair(elem);
+			return $bush(elem);
 		});
 	};
 	
-	window.$jair.width = window.$jair.ext.width = function() {
-		return $jair.bench.call(this, arguments, function(elem, options) {
+	window.$bush.width = window.$bush.ext.width = function() {
+		return $bush.bench.call(this, arguments, function(elem, options) {
 			return elem[0].offsetWidth;
 		});
 	};
 	
-	window.$jair.height = window.$jair.ext.height = function() {
-		return $jair.bench.call(this, arguments, function(elem, options) {
+	window.$bush.height = window.$bush.ext.height = function() {
+		return $bush.bench.call(this, arguments, function(elem, options) {
 			return elem[0].offsetHeight;
 		});
 	};
 	
-	/* jAir.domReady */
-	window.$jair.domReady = function(callback) {
+	/* miraclebush.domReady */
+	window.$bush.domReady = function(callback) {
 		if (typeof binds.domReady != 'object') binds.domready = [];
 		binds.push(callback);
 		document.onload = window.onload = function(e) {
@@ -2223,18 +2223,18 @@ return Sizzle;
 		};
 	};
 	
-	/* jAir as jQuery plugin */
-	if (typeof jQuery != 'undefined') window.jQuery.jair = window.$jair;
+	/* miraclebush as jQuery plugin */
+	if (typeof jQuery != 'undefined') window.jQuery.mb = window.$bush;
 	
-	/* jAir.api */	
-	window.$jair.api = {};
+	/* miraclebush.api */	
+	window.$bush.api = {};
 	
-	window.$jair.api.rand = function(min, max) {
+	window.$bush.api.rand = function(min, max) {
 		var rand = min - 0.5 + Math.random()*(max-min+1)
 		return  Math.round(rand);
 	};
 	
-	window.$jair.api.eachByAttr = function(el, attrName, eachcallback) {
+	window.$bush.api.eachByAttr = function(el, attrName, eachcallback) {
 		var attrName = attrName.split('[').join('\\[').split(']').join('\\]');
 		
 		if (el instanceof Array) {
@@ -2256,16 +2256,16 @@ return Sizzle;
 		};
 	};
 	
-	window.$jair.api.hasAttribute = function(el, attrName) {
+	window.$bush.api.hasAttribute = function(el, attrName) {
 		var attrName = attrName.split('[').join('\\[').split(']').join('\\]');
 			
 		if (el.getAttribute(attrName)!=null) return true;
 		else return false;
 	};
 	
-	/* jAir modules constrcutor */
-	window.$jair.module = function(module) {
-		return $jair.api.extend(module, {
+	/* miraclebush modules constrcutor */
+	window.$bush.module = function(module) {
+		return $bush.api.extend(module, {
 			config : {},
 			setConfig : function() {
 				
@@ -2329,7 +2329,7 @@ return Sizzle;
 	};
 	
 	// We love jQuery.extend, but we need more independent and support non-jQuery-projects.
-	window.$jair.api.extend = function() {
+	window.$bush.api.extend = function() {
 			var src, copyIsArray, copy, name, options, clone, target = arguments[0] || {}, i = 1, length = arguments.length, deep = false;
 			if ( typeof target === "boolean" ) {
 				deep = target;
@@ -2380,94 +2380,94 @@ return Sizzle;
 			return target;
 		};
 	
-	/* jair vcl constructor */
-	window.$jair.vcl = function() {
+	/* miraclebush uil constructor */
+	window.$bush.ui = function() {
 		
 		if (this === window || typeof this == 'function') {
 			if (typeof arguments[0] == 'string') {
 				var name = arguments[0];
 				if (arguments.length>1) {
 					if (typeof arguments[1] == 'string') {
-						var vcl = $jair.vcl[arguments[1]];
+						var uil = $bush.ui[arguments[1]];
 					} else {
-						var vcl = arguments[1];
+						var uil = arguments[1];
 					};
 				}
 				else 
 				{
-					var vcl = {};
+					var uil = {};
 				};
 			} else {
 				var name = false;
-				var vcl = arguments[0];
+				var uil = arguments[0];
 			};
 			
-			if (name && typeof $jair.vcl[name] != 'undefined') return $jair.api.extend($jair.vcl[name], vcl);
+			if (name && typeof $bush.ui[name] != 'undefined') return $bush.api.extend($bush.ui[name], uil);
 			
-			$jair.api.extend(arguments[1], $jair.module({
+			$bush.api.extend(arguments[1], $bush.module({
 				widgets : {},
 				init : function() {
 					
-					var vcl = this;
+					var uil = this;
 					
-					$jair.domReady(function(e) {
-						vcl.parse(window.document.getElementsByTagName('body')[0]); 
+					$bush.domReady(function(e) {
+						uil.parse(window.document.getElementsByTagName('body')[0]); 
 					});
 					
 					if (typeof jQuery != 'undefined') {
 						// jQuery support
 						$(document).on('change', function(e, el) {
-							vcl.parse(el || $('body'));
+							uil.parse(el || $('body'));
 						});
 					};
 					
 					// Framework events
 					this.bind('beforeParse', function(el, widget) {
-						$jair.vcl.trigger('beforeParse', [vcl, el, widget]);
+						$bush.ui.trigger('beforeParse', [uil, el, widget]);
 					});
 					
 					this.bind('afterParse', function(el, widget) {
-						$jair.vcl.trigger('afterParse', [vcl, el, widget]);
+						$bush.ui.trigger('afterParse', [uil, el, widget]);
 					});
 					
 					return this;	
 				},
 				parse : function(el) { 
-					var vcl = this;
-					$jair.api.eachByAttr(el, 'jvcl-'+this.config.name, function() {
+					var uil = this;
+					$bush.api.eachByAttr(el, 'ui-'+this.config.name, function() {
 						
-						var widget = this.getAttribute('jvcl-'+vcl.config.name+'');
-						if ($jair.api.hasAttribute(this, 'vcl-initialized')) return this; 
-						if (typeof vcl.widgets[widget] == 'function') {
-							vcl.trigger('beforeParse', [this, widget]);
-							this.setAttribute("vcl-initialized", "true");
-							vcl.widgets[widget].call(vcl, this);
-							vcl.trigger('afterParse', [this, widget]);
-						} else if (typeof vcl.widgets[this.getAttribute('jvcl-'+vcl.config.name+'')] == 'object') {
-							vcl.trigger('beforeParse', [this, widget]);
-							this.setAttribute("vcl-initialized", "true");
-							vcl.widgets[widget].render(this, (function(el) {
+						var widget = this.getAttribute('ui-'+uil.config.name+'');
+						if ($bush.api.hasAttribute(this, 'ui-initialized')) return this; 
+						if (typeof uil.widgets[widget] == 'function') {
+							uil.trigger('beforeParse', [this, widget]);
+							this.setAttribute("ui-initialized", "true");
+							uil.widgets[widget].call(uil, this);
+							uil.trigger('afterParse', [this, widget]);
+						} else if (typeof uil.widgets[this.getAttribute('ui-'+uil.config.name+'')] == 'object') {
+							uil.trigger('beforeParse', [this, widget]);
+							this.setAttribute("ui-initialized", "true");
+							uil.widgets[widget].render(this, (function(el) {
 								return {};
 							})(this));
-							vcl.trigger('afterParse', [this, widget]);
+							uil.trigger('afterParse', [this, widget]);
 						};
 					});
 					
-					$jair.api.eachByAttr(el, 'data-jvcl-'+this.config.name, function() {
-						var widget = this.getAttribute('data-jvcl-'+vcl.config.name+'');
-						if ($jair.api.hasAttribute(this, 'vcl-initialized')) return this; 
-						if (typeof vcl.widgets[widget] == 'function') {
-							vcl.trigger('beforeParse', [this, widget]);
-							this.setAttribute("vcl-initialized", "true");
-							vcl.widgets[widget].call(vcl, this);
-							vcl.trigger('afterParse', [this, widget]);
-						} else if (typeof vcl.widgets[this.getAttribute('jvcl-'+vcl.config.name+'')] == 'object') {
-							vcl.trigger('beforeParse', [this, widget]);
-							this.setAttribute("vcl-initialized", "true");
-							vcl.widgets[widget].render(this, (function(el) {
+					$bush.api.eachByAttr(el, 'data-ui-'+this.config.name, function() {
+						var widget = this.getAttribute('data-ui-'+uil.config.name+'');
+						if ($bush.api.hasAttribute(this, 'ui-initialized')) return this; 
+						if (typeof uil.widgets[widget] == 'function') {
+							uil.trigger('beforeParse', [this, widget]);
+							this.setAttribute("ui-initialized", "true");
+							uil.widgets[widget].call(uil, this);
+							uil.trigger('afterParse', [this, widget]);
+						} else if (typeof uil.widgets[this.getAttribute('ui-'+uil.config.name+'')] == 'object') {
+							uil.trigger('beforeParse', [this, widget]);
+							this.setAttribute("ui-initialized", "true");
+							uil.widgets[widget].render(this, (function(el) {
 								return {};
 							})(this));
-							vcl.trigger('afterParse', [this, widget]);
+							uil.trigger('afterParse', [this, widget]);
 						};
 					});
 					
@@ -2488,8 +2488,8 @@ return Sizzle;
 							else return widget_content;
 						break;
 						case 'object':
-							if (name) this.widgets[name] = $jair.module(widget_content);
-							else return $jair.module(widget_content);
+							if (name) this.widgets[name] = $bush.module(widget_content);
+							else return $bush.module(widget_content);
 						break;
 					};
 					return this;
@@ -2498,37 +2498,37 @@ return Sizzle;
 				name :  arguments[0]
 			}).init()
 			.tie(function() {
-				$jair.vcl.names.push(name);
-				if (name) $jair.vcl[name] = this;
+				$bush.ui.names.push(name);
+				if (name) $bush.ui[name] = this;
 			});
 			
 			if (!name) return this;
-			else return $jair.vcl[name];
+			else return $bush.ui[name];
 		};
 	};
 	
-	window.$jair.vcl = window.$jair.module(window.$jair.vcl);
+	window.$bush.ui = window.$bush.module(window.$bush.ui);
 	
-	window.$jair.vcl.prototype = {
-		constructor: window.$jair.vcl
+	window.$bush.ui.prototype = {
+		constructor: window.$bush.ui
 	};
 	
-	window.$jair.vcl.names = [];
-	window.$jair.vcl.parse = function(el) {
+	window.$bush.ui.names = [];
+	window.$bush.ui.parse = function(el) {
 		var el = el || window.document.getElementsByTagName('body')[0];
-		for(var i=0;i<$jair.vcl.names.length;i++) {
-			$jair.vcl[$jair.vcl.names[i]].parse(el);
+		for(var i=0;i<$bush.ui.names.length;i++) {
+			$bush.ui[$bush.ui.names[i]].parse(el);
 		};
 	};
 	
-	window.$jair.plugins = function() {
+	window.$bush.plugins = function() {
 		
 		if (this === window || typeof this == 'function') {
 			if (typeof arguments[0] == 'string') {
 				var name = arguments[0];
 				if (arguments.length>1) {
 					if (typeof arguments[1] == 'string') {
-						var plugin = $jair.plugins[arguments[1]];
+						var plugin = $bush.plugins[arguments[1]];
 					} else {
 						var plugin = arguments[1];
 					};
@@ -2542,9 +2542,9 @@ return Sizzle;
 				var plugin = arguments[0];
 			};
 			
-			if (name && typeof $jair.plugins[name] != 'undefined') return $jair.api.extend($jair.plugins[name], plugin);
+			if (name && typeof $bush.plugins[name] != 'undefined') return $bush.api.extend($bush.plugins[name], plugin);
 			
-			$jair.api.extend(arguments[1], $jair.module({
+			$bush.api.extend(arguments[1], $bush.module({
 				init : function() {
 					
 					var plugin = this;
@@ -2555,22 +2555,22 @@ return Sizzle;
 				name :  arguments[0]
 			}).init()
 			.tie(function() {
-				if (name) $jair.vcl[name] = this;
+				if (name) $bush.ui[name] = this;
 			});
 			
 			if (!name) return this;
-			else return $jair.plugin[name];
+			else return $bush.plugin[name];
 		};
 	};
 	
-	window.$jair.plugins.prototype = {
-		constructor: window.$jair.plugins
+	window.$bush.plugins.prototype = {
+		constructor: window.$bush.plugins
 	};
 	
 	/*
-	jAir zindex
+	miraclebush zindex
 	*/
-	window.$jair.zindex = {
+	window.$bush.zindex = {
 		max: 0,
 		all	: [],
 		recalc	: function() {
@@ -2602,9 +2602,9 @@ return Sizzle;
 			
 			for (var i=0;i<indexes.length;i++) {
 				
-				window.$jair.zindex.all[indexes[i]] = false;
+				window.$bush.zindex.all[indexes[i]] = false;
 			};
-			window.$jair.zindex.recalc();
+			window.$bush.zindex.recalc();
 		}
 	};
 	
