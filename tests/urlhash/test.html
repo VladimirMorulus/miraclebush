@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	
+	<script type="text/javascript" src="../../includeall.js"></script>
+	
+	<title>Curves</title>
+	<script type="text/javascript">
+		
+		function ready() {
+				
+				$script.ready(['urlhash'], function() {
+					
+					$("#change").click(function() {
+						$bush.url.set($("#to").val());
+					});
+				
+				});
+			
+				$script('../../dist/extends/urlhash/urlhash.mb.alfa.js', 'urlhash');
+		
+		};
+	</script>
+</head>
+<body>
+	<input type="text" id="to" /><input type="button" id="change" value="change url" />
+</body>
+</html>
