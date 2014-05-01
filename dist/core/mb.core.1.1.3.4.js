@@ -386,55 +386,39 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		});
 	};
 	
-	// We love jQuery.extend, but we need more independent and support non-jQuery-projects.
+	// extend
 	window.$bush.api.extend = function() {
-			var src, copyIsArray, copy, name, options, clone, target = arguments[0] || {}, i = 1, length = arguments.length, deep = false;
-			if ( typeof target === "boolean" ) {
-				deep = target;
-				target = arguments[ i ] || {};
-				i++;
+			
+			var target = arguments[0], proto = arguments[1];
+			
+			for (var i in proto) {
+				switch ( typeof proto[i] ) {
+					case 'undefined':
+					case 'null':
+						target[i] = null;
+					break;
+					case 'object': 
+						if (proto[i] instanceof Array) {
+							target[i] = [];
+							
+							$bush.api.extend(target[i],proto[i]);
+						} else {
+							target[i] = {};
+							
+							$bush.api.extend(target[i],proto[i]);
+						};
+					break;
+					case 'boolean':
+					case 'number':
+					case 'string':
+					case 'function':
+						
+						target[i] = proto[i];
+						
+					break;
+				};
 			};
 			
-			if ( typeof target !== "object" && !(typeof target == 'function') ) {
-				target = {};
-			};			
-			if ( i === length ) {
-				target = this;
-				i--;
-			};
-			for ( ; i < length; i++ ) {
-				
-				if ( (options = arguments[ i ]) != null ) {
-					
-					for ( name in options ) {
-						src = target[ name ];
-						copy = options[ name ];
-
-						
-						if ( target === copy ) {
-							continue;
-						}
-
-						
-						if ( deep && copy && ( (function(obj) { if (!obj || typeof (obj) !== "object" || obj.nodeType || ( obj == window )) return false; else return true; })(copy) || (copyIsArray = (function(value) { if (value instanceof Array) return true; else return false; })(copy)) ) ) {
-							if ( copyIsArray ) {
-								copyIsArray = false;
-								clone = src && (function() { if (value instanceof Array) return true; else return false; })(src) ? src : [];
-
-							} else {
-								clone = src && (function(obj) { if (!obj || typeof (obj) !== "object" || obj.nodeType || ( obj == window )) return false; else return true; })(src) ? src : {};
-							}
-
-							
-							target[ name ] = extend( deep, clone, copy );
-
-						
-						} else if ( copy !== undefined ) {
-							target[ name ] = copy;
-						}
-					}
-				}
-			}
 			return target;
 		};
 	
@@ -579,7 +563,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		};
 	};
 	
-	window.$bush.plugin = window.$bush.ext.plugin =function() {
+	window.$bush.plugin = window.$bush.ext.plugin = function() {
 		
 		if (this === window || typeof this == 'function') {
 			
@@ -606,16 +590,27 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			
 			$bush.plugin[name] = plugin;
 			
+			
 			if (!name) return this;
 			else return $bush.plugin[name];
 		} else {
+				
 				var options = arguments.length>1 && typeof arguments[1] == 'object' ? arguments[1] : {};
-				try {
-					var plug = new (function() {
-					})();
+				
+				var plug = function() {
+					};
+					
+					plug = new plug();
 					$bush.api.extend(plug, $bush.plugin[arguments[0]]);
+					
+					
+					
 					plug.elements = this;
+					
 					plug.options = $bush.api.extend(plug.options, options);
+				
+				try {
+					
 				} catch(e) {
 					
 					throw('$bush error: undefined plugin `'+arguments[0]+'`');
