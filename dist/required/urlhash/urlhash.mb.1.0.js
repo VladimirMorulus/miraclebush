@@ -1,3 +1,4 @@
+/* !attention: HTML5 only */
 $bush.url = {
 	set : function(url) {
 		window.history.pushState(null, null, url);
@@ -5,8 +6,8 @@ $bush.url = {
 	popstate : function(callback) { // Перехват history back / forth
 		var callback = callback;
 		$(window).bind("popstate", function(e) {
-			console.log(e);
-			callback.call(location.pathname);
+			
+			callback(location.pathname, location);
 		});	
 	}
 };
