@@ -3,7 +3,7 @@ MiracleBush
 
 ### Javascript framework for creating visual components library.
 
-Visit project page: http://miraclebush.vladimirkalmykov.com
+Visit project page: http://miraclebush.vladimirkalmykov.com/
 
 ## Getting Started
 
