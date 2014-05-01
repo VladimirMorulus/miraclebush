@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>MiracleBush Metro Plugin</title>
+	<script type="text/javascript" src="../../includeall.js"></script>
+	
+	<link rel="stylesheet" href="../../dist/plugins/metro/metro.mb.alfa.css?=343" />
+	<link rel="stylesheet" href="../../asist/jair.pack.css" />
+	<link href='http://fonts.googleapis.com/css?family=Poiret+One&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+	<script type="text/javascript">
+	
+		function ready() {
+			
+			$script.ready(['metro', 'geo64', 'jair', 'preloader'], function() {
+				
+				$bush.ui.parse();
+				
+			});
+			
+			$script('../../dist/plugins/metro/metro.mb.beta.js', 'metro');
+			$script('../../asist/jair.pack.js', 'jair');
+			$script('geo64.mb-lab.alfa.js', 'geo64');
+			$script('../../asist/jquery.image-preloader.js', 'preloader');
+			
+		};
+	</script>
+	<link rel="stylesheet" href="geo64.mb-lab.alfa.css" />
+</head>
+<body class="geo64">
+<div class="overlay"></div>
+<div class="geo64-bg">
+	
+		<div ui-geo64="metro" style="opacity:0;width:900px;height:900px;">
+			<h1>Гео-комплекс</h1>
+			<ul data-type="tree">
+				<li data-priority="max" data-content-type="photo" data-bgcolor="transparent" data-bgimage="example/zemuch.png">
+					<h2>Земельные участки</h2>
+					<ul>
+						<li><a href="pages/uchet.html">Постановка на учет</a></li>
+						<li><a href="pages/rzdel.html">Раздел земельного участка</a></li>
+						<li><a href="pages/granici.html">Уточнение границ</a></li>
+						<li><a href="pages/vinos.html">Вынос границ в натуру</a></li>
+					</ul>
+				</li>
+				<li data-bgcolor="#667a8c" data-bgimage="example/buildings.png">
+					<h2>Здания</h2>
+					<ul>
+						<li>
+							<descript>Поставить на государственный кадастровый учет здание</descript>
+							<a href="pages/uchet.html">Постановка на учет</a>
+						</li>
+						<li>
+							<descript>Внести изменения в сведения государственного кадастра недвижимости при изменении основных характеристик здания</descript>
+							<a href="pages/uchet.html">Учет изменений при реконструкции</a>
+						</li>
+					</ul>
+				</li>
+				<li data-bgcolor="#6200c4" data-bgimage="example/sooruz.png">
+					<h2>Сооружения</h2>
+					<ul>
+						<li>
+							<descript>Поставить на государственный кадастровый учет сооружение</descript>
+							<a href="pages/uchet.html">Постановка на учет</a>
+						</li>
+						<li>
+							<descript>Внести изменения в сведения государственного кадастра недвижимости при изменении основных характеристик сооружения</descript>
+							<a href="pages/uchet.html">Учет изменений при реконструкции</a>
+						</li>
+					</ul>
+				</li>
+				<li data-bgcolor="rgb(18, 179, 114)" data-bgimage="example/pomesheniya.png">
+					<h2>Помещения</h2>
+					<ul>
+						<li>
+							<descript>Поставить на государственный кадастровый учет помещение</descript>
+							<a href="pages/uchet.html">Постановка на учет</a>
+						</li>
+						<li>
+							<descript>Образовать несколько помещений из одного</descript>
+							<a href="pages/uchet.html">Учет изменений при реконструкции</a>
+						</li>
+					</ul>
+				</li>
+				<li data-bgcolor="rgb(0, 113, 176)" data-priority="max" data-bgimage="example/razresh.png">
+					<h2>Разрешение на строительство</h2>
+				</li>
+				<li data-bgcolor="#004080" data-bgimage="example/opening.png">
+					<h2>Ввод объекта в эксплуатацию</h2>
+				</li>
+				<li data-bgcolor="#2b95ff">
+					<img src="photos/stas.jpg" alt="" />
+					<img src="photos/alex.jpg" alt="" />
+					<img src="photos/savich.jpg" alt="" />
+					<img src="photos/nat.jpg" alt="" />
+					<img src="photos/tanya.jpg" alt="" />
+					<h2>Команда</h2>
+					<ul>
+						<li data-priority="max" data-content-type="photo" data-bgimage="photos/alex.jpg">
+							<a href="pages/persona.html">Алекс</a>
+						</li>
+						<li data-priority="max" data-content-type="photo" data-bgimage="photos/stas.jpg">
+							<a href="pages/persona.html">Стас</a>
+						</li>
+						<li data-priority="max" data-content-type="photo" data-bgimage="photos/savich.jpg">
+							<a href="pages/persona.html">Савич</a>
+						</li>
+						<li data-priority="max" data-content-type="photo" data-bgimage="photos/nat.jpg">
+							<a href="pages/persona.html">Нат</a>
+						</li>
+						<li data-priority="max" data-content-type="photo" data-bgimage="photos/tanya.jpg">
+							<a href="pages/persona.html">Таня</a>
+						</li>
+						
+						<li data-bgcolor="#804040" data-priority="min">
+							<a href="pages/about.html">О нас</a>
+						</li>
+						<li data-bgcolor="#804040" data-priority="min">
+							<a href="pages/tehno.html">Технологии</a>
+						</li>
+						<li data-bgcolor="#804040" data-priority="middle">
+							<a href="pages/tehno.html">Свидетельства и сертификаты</a>
+						</li>
+					</ul>
+				</li>
+				<li data-bgcolor="rgb(207, 38, 207)" data-priority="min">
+					<a href="pages/about.html">О компании</a>
+				</li>
+				<li data-bgcolor="rgb(163, 20, 20)" data-priority="min" data-bgimage="example/gosvlast.png">
+					<a href="pages/gosvlast.html">Органы гос. власти</a>
+				</li>
+				<li data-bgcolor="transparent" data-priority="middle" data-bgimage="example/contacts.png">
+					<descript>
+						<strong>Tel.:</strong> +7 925 051 77 57<br />
+						<a style="display:none;" href="mailto:callback@geo64.ru">callback@geo64.ru</a>
+					</descript>
+					<a href="pages/contacts.html">Контакты</a>
+				</li>
+				<li data-bgcolor="rgb(34, 136, 54)" data-priority="min">
+					<h2>Наши клиенты</h2>
+				</li>
+				<li data-bgcolor="rgb(106, 121, 67)" data-priority="min" data-bgimage="example/karta.png" data-snippet="map">
+					<h2>Карта сайта</h2>
+				</li>
+			</ul>
+			
+		</div>
+	
+</div>
+</body>
+</html>
