@@ -2570,7 +2570,7 @@ return Sizzle;
 	/*
 	miraclebush zindex
 	*/
-	window.$bush.zindex = {
+	window.$bush.document.zindex = {
 		max: 0,
 		all	: [],
 		recalc	: function() {
@@ -2602,9 +2602,9 @@ return Sizzle;
 			
 			for (var i=0;i<indexes.length;i++) {
 				
-				window.$bush.zindex.all[indexes[i]] = false;
+				window.$bush.document.zindex.all[indexes[i]] = false;
 			};
-			window.$bush.zindex.recalc();
+			window.$bush.document.zindex.recalc();
 		}
 	};
 	
