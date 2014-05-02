@@ -18,7 +18,7 @@ $bush.url = {
 			callback(location.pathname, location);
 		});	
 	},
-	depatchurl : function(link, prefix, sufix) {
+	depatch : function(link, prefix, sufix) {
 		var link = link;
 		var prefix = prefix || '';
 		var sufix = sufix || '';
