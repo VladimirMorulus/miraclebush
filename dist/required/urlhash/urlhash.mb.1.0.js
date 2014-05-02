@@ -1,12 +1,12 @@
 /* !attention: HTML5 only */
 $bush.url = {
 	set : function(url, title, args) {
-		window.history.replace(null, null, ''); 
-		window.history.pushState((args || null), 'Testing', (url || null));
+		
+		window.history.pushState((args || null), (title || null), (url || null));
 	},
 	edit : function(url, title, args) {
 		
-		window.history.replace((args || null), 'Testing', (url || null));
+		window.history.replaceState((args || null), (title || null), (url || null));
 	},
 	title : function() {
 		
