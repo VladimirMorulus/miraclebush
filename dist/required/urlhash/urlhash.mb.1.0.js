@@ -1,7 +1,7 @@
 /* !attention: HTML5 only */
 $bush.url = {
 	set : function(url, title, args) {
-		
+		window.history.replace(null, null, ''); 
 		window.history.pushState((args || null), 'Testing', (url || null));
 	},
 	edit : function(url, title, args) {
