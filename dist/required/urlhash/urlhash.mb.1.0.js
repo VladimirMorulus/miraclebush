@@ -27,5 +27,11 @@ $bush.url = {
 		
 		if (pathname.substring(pathname.length-sufix.length)==sufix) pathname = pathname.substring(0, pathname.length-sufix.length);
 		return pathname;
+	},
+	patch : function(link, prefix, sufix) {
+		var prefix = prefix || '';
+		var sufix = sufix || '';
+		this.depatch(link,prefix,sufix);
+		return prefix+link+sufix;
 	}
 };
