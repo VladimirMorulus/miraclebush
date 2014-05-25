@@ -45,7 +45,7 @@ VI. Set style to your widget:
 }
 
 [ui-myown=message] > span {
-    font-style:italic;   
+    font-style:italic;    
 }
 ```
 VII. Use it via html:
