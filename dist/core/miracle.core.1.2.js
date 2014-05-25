@@ -27,7 +27,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		if (this === window) {
 			
 			var air = new window.Miracle;
-			
+			var callback = false;
 			switch (arguments.length) {
 				case 2:
 					var selector = arguments[0];
@@ -49,6 +49,24 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 				break;
 			}
 			
+			// > First arguments is a function = context/depend mode
+			switch(typeof selector) {
+				case 'function':
+					callback = selector;
+					selector = '';
+					// > Check for options
+					if (Miracle.isArray(options)) {
+						// Look for depends existings
+						for (var i=0;i<options.length;i++) {
+							
+							if (typeof window.Miracle.ext.installedComponents[options[i]] == 'undefined') {
+								throw('Miracle: required `'+options[i]+'` component. Visit '+Miracle.info.homesite+' to get it');
+							};
+						};
+					};
+				break;
+			};
+
 			for (var index=0;index<elements.length;index++) {
 				
 				air[index] = elements[index];
@@ -60,7 +78,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			else air.context = null;
 			air.length = index;
 			air.selector = selector;
-			air.miracleBush = '1.1.3.4';
+			air.miracleBush = '1.2';
+			// eval callback
+			if (typeof callback == 'function') {
+				callback.apply(air);
+			};
+
 			return air;
 		}
 	};
@@ -73,6 +96,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		}
 	};
 	
+	// > Installed compoents (components include plugins & extensions);
+	window.Miracle.installedComponents = window.Miracle.ext.installedComponents = {};
+
+	window.Miracle.info = {
+		homesite: 'http://miracle.vladimirkalmykov.com'
+	};
+
 	// Try to get preposition of selector
 	window.Miracle.bench = window.Miracle.ext.bench = function(args, tieback) {
 		var elem;
@@ -107,6 +137,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 					return [document.createElement(result[1].toUpperCase())];
 				};
 			break;
+			case 'function':
+				return [];
+			break;
 			case 'object':
 			default:
 				if (query instanceof Array) {
@@ -128,6 +161,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		};
 	};
 	
+	// > PHP like function
+	window.Miracle.isArray = function(obj) {
+		if (obj instanceof Array) return true;
+		return false;
+	}
+
 	window.Miracle.each = window.Miracle.ext.each = function() {
 		
 		return Miracle.bench.call(this, arguments, function(elem, options) {
@@ -391,6 +430,28 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 					};
 				};
 				return this;
+			},
+			// > set config value and call trgiiger `reconfig`
+			set : function(key, value) {
+
+				switch(typeof key) {
+					case 'string':
+						
+						this.config[key] = value;
+					break;
+					case 'object':
+						var c = this.config;
+						for (var q=0;q<key.length-1;q++) {
+							
+							if (typeof this.config[key[q]] == 'undefined')
+							this.config[key[q]] = {};
+							c = this.config[key[q]]
+							
+						};
+						c[key[key.length-1]] = value;
+					break;
+				}
+				this.trigger('reconfig', [key]);
 			}
 		});
 	};
@@ -586,6 +647,15 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	};
 
 	/*
+		Creating extension
+	*/
+	window.Miracle.extension = function(name, callback) {
+		if (typeof this.installedComponents[name] == 'undefined') this.installedComponents[name] = 0;
+		this.installedComponents[name]++;
+		callback.apply(window.Miracle);
+	};
+
+	/*
 	Create/addon widget by method life
 	Example:
 	Miracle.life('mywidget', {
@@ -610,6 +680,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	Miracle('#mywrap').life('mywidget');
 
 	*/
+	window.Miracle.plugins = {};
 	window.Miracle.life = window.Miracle.ext.life = function() {
 		if (this === window || typeof this == 'function') {
 			// > name of widget
@@ -622,8 +693,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 					break;
 					case 'string': // copy
 						var copy = arguments[1];
-						if (typeof Miracle.plugin[copy] != 'undefined') {
-							$data = this.api.extend({}, Miracle.plugin[copy]);
+						if (typeof Miracle.plugins[copy] != 'undefined') {
+							$data = this.api.extend({}, Miracle.plugins[copy]);
 						} else {
 							$data = {};
 						};
@@ -639,7 +710,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			
 
 			// > return widget protptype if exists
-			if (name && typeof Miracle.plugin[name] != 'undefined') return Miracle.api.extend(Miracle.plugin[name], $data);
+			if (name && typeof Miracle.plugins[name] != 'undefined') return Miracle.api.extend(Miracle.plugins[name], $data);
 
 			// > create new widget
 			var widget = {
@@ -655,25 +726,33 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 				name : name
 			});
 
-			Miracle.plugin[name] = plugin;
+			Miracle.plugins[name] = widget;
 			
 			
 			if (!name) return this;
-			else return Miracle.plugin[name];
+			else return Miracle.plugins[name];
 		} else {
+			// > Test for plugin exists
+			if (typeof Miracle.plugins[arguments[0]] != 'object') {
+				throw('Miracle: require touch plugin. Visit '+Miracle.info.homesite+' to download it.');
+			}
+
 			// > We can give options to life elemnt
 			var options = arguments.length>1 && typeof arguments[1] == 'object' ? arguments[1] : {}; 
 
 			var wid = function() {
 			};
 					
-			plug = new plug();
-			Miracle.api.extend(plug, Miracle.plugin[arguments[0]]);
+			plug = new wid();
+			Miracle.api.extend(plug, Miracle.plugins[arguments[0]]);
 					
 							
 			plug.elements = this;
 			plug.options = Miracle.api.extend(plug.options, options);
-				
+			
+			// > ! Append life variable to element
+			Miracle(this)[0].life = plug;
+
 			try {
 				
 			} catch(e) {
@@ -681,7 +760,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 				throw('Miracle error: undefined plugin `'+arguments[0]+'`');
 				return {};
 			}
-			return plug.execute();
+
+			var result = plug.execute();
+			if (typeof result == 'undefined') return plug;
+			else return result;
 		}
 	}
 
