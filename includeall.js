@@ -10,10 +10,10 @@ $script.ready(['jquery', 'jquerybridge', 'sizzle', 'core', 'trigonometria', 'ove
 });
 
 $script('http://code.jquery.com/jquery-1.11.0.min.js', 'jquery', function() {
-	$script('../../dist/core/mb.core.1.1.4.js', 'core', function() {
-		$script('../../dist/extends/jquerybridge/jquerybridge.mb.1.0.js', 'jquerybridge');
+	$script('../../dist/core/miracle.core.1.2.js', 'core', function() {
+		$script('../../dist/extends/jquerybridge/jquerybridge.mb.1.1.js', 'jquerybridge');
 		$script('../../dist/plugins/overlay/overlay.mb.alfa.js', 'overlay');
-		$script('../../dist/extends/trigonometria/trigonometria.mb.1.0.js', 'trigonometria');
+		$script('../../dist/extends/trigonometria/trigonometria.miracle.1.1.js', 'trigonometria');
 		$script('../../dist/required/sizzle/sizzle.mb.1.10.20.js', 'sizzle');
 	});
 });
